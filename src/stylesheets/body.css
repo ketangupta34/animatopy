@@ -72,6 +72,48 @@
   margin: 20px 0;
 }
 
+.codeHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.copyButton {
+  cursor: pointer;
+  padding: 7px 20px;
+  border-radius: 100px;
+  outline: none;
+  border: none;
+  background-color: #0054c2;
+  color: white;
+}
+.copyButton:hover {
+  transform: scale(1.05);
+  transition: all 0.1s;
+}
+
+.copyButton:focus {
+  outline: none;
+}
+
+.copiedTag {
+  position: fixed;
+  left: 50%;
+  top: -10%;
+  z-index: 5;
+  transform: translate(-50%, -10%);
+  border: 3px solid lightgreen;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  border-radius: 100px;
+  padding: 10px 30px;
+  transition: all 0.2s;
+}
+
 @media (max-width: 700px) {
   .siteTitle {
     font-size: 4rem;
