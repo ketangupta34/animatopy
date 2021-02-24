@@ -1,7 +1,14 @@
-import React from 'react';
-import '../stylesheets/body.css';
+import { useState } from "react";
+import "../stylesheets/body.css";
 
 function Body() {
+  const [curAnimation, setCurAnimation] = useState("bounce");
+
+  const animateItButton = (e) => {
+    e.preventDefault();
+    console.log(curAnimation);
+  };
+
   return (
     <div className="body">
       <div className="bodyHeader">
@@ -11,7 +18,12 @@ function Body() {
 
       <div className="bodyMain">
         <form>
-          <select className="input">
+          <select
+            className="input"
+            onChange={(e) => {
+              setCurAnimation(e.target.value);
+            }}
+          >
             <optgroup label="Attention Seekers">
               <option value="bounce">bounce</option>
               <option value="flash">flash</option>
@@ -131,7 +143,9 @@ function Body() {
             </optgroup>
           </select>
 
-          <button className="button">Animate it</button>
+          <button className="button" onClick={animateItButton}>
+            Animate it
+          </button>
         </form>
       </div>
 
@@ -141,6 +155,17 @@ function Body() {
         <p className="siteTagLine2">
           No need to Download Animate.css, Just copy the code.
         </p>
+      </div>
+
+      <div class="code-section" style={{ opacity: 0 }}>
+        <h2>HTML:</h2>
+        <pre class="html-block">
+          <code id="formattedBlockHtml" class="language-html"></code>
+        </pre>
+        <h2>CSS:</h2>
+        <pre class="css-block">
+          <code id="formattedBlockCss" class="language-css"></code>
+        </pre>
       </div>
     </div>
   );

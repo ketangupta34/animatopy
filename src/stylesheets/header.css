@@ -1,16 +1,8 @@
-.headerLinks {
-  display: flex;
-  align-items: center;
-}
-
 .headerLogo {
   cursor: pointer;
   font-size: 28px;
 }
 
-.headerDocumentationLink {
-  cursor: pointer;
-}
 .headerGithubLink {
   margin-left: 20px;
   cursor: pointer;

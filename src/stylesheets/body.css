@@ -18,11 +18,12 @@
 }
 
 .siteTitle {
-  display: block;
   color: #f35626;
   background-image: -webkit-linear-gradient(92deg, #f35626, #feab3a);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: hue 60s infinite linear;
   -webkit-animation: hue 60s infinite linear;
   font-size: 6rem;
 }
@@ -63,6 +64,7 @@
   font-weight: 700;
   color: #f35626;
   cursor: pointer;
+  animation: hue 60s infinite linear;
   -webkit-animation: hue 60s infinite linear;
 }
 
@@ -75,5 +77,25 @@
   }
   .siteTagLine2 {
     font-size: 0.8rem;
+  }
+}
+
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+@-webkit-keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
   }
 }
