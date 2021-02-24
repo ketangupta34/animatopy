@@ -1,18 +1,54 @@
 import { useState } from "react";
+import css from "css";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+
 import "../stylesheets/body.css";
+
+import animateData from "../data/animateData";
 
 function Body() {
   const [curAnimation, setCurAnimation] = useState("bounce");
+  const [titleClass, setTitleClass] = useState("siteTitle");
+  const [codeStyle, setCodeStyle] = useState({ opacity: "0" });
+  const [innerHTML, setInnerHTML] = useState("");
+  const [innerCSS, setInnerCSS] = useState("");
+
+  const testAnimate = (x) => {
+    setTitleClass(`siteTitle animate__animated animate__${curAnimation}`);
+    setTimeout(() => {
+      setTitleClass("siteTitle");
+    }, 1000);
+  };
+
+  const showCssHtml = (x) => {
+    let cssObject = JSON.parse(JSON.stringify(animateData));
+
+    cssObject.stylesheet.rules = cssObject.stylesheet.rules
+      .map((e) => {
+        if (e.name === curAnimation) return e;
+        if (e.selectors && e.selectors.indexOf("." + curAnimation) > -1)
+          return e;
+        if (e.selectors && e.selectors.indexOf(".animated") > -1) return e;
+        else return undefined;
+      })
+      .filter((e) => e !== undefined);
+
+    setInnerCSS(css.stringify(cssObject));
+    setInnerHTML(`<div className="animated ${curAnimation}">Example</div>`);
+    setCodeStyle({ opacity: "1" });
+  };
 
   const animateItButton = (e) => {
     e.preventDefault();
-    console.log(curAnimation);
+    testAnimate();
+    showCssHtml();
   };
 
   return (
     <div className="body">
       <div className="bodyHeader">
-        <h1 className="siteTitle">Animatopy</h1>
+        <h1 className={titleClass}>Animatopy</h1>
         <p className="siteTagLine">Just-add-water CSS animations snippets 😜</p>
       </div>
 
@@ -157,15 +193,24 @@ function Body() {
         </p>
       </div>
 
-      <div class="code-section" style={{ opacity: 0 }}>
-        <h2>HTML:</h2>
-        <pre class="html-block">
-          <code id="formattedBlockHtml" class="language-html"></code>
-        </pre>
-        <h2>CSS:</h2>
-        <pre class="css-block">
-          <code id="formattedBlockCss" class="language-css"></code>
-        </pre>
+      <div style={codeStyle}>
+        <div className="htmlCode">
+          <h2>HTML:</h2>
+          <pre>
+            <SyntaxHighlighter style={materialDark} language="javascript">
+              {innerHTML}
+            </SyntaxHighlighter>
+          </pre>
+        </div>
+
+        <div className="cssCode">
+          <h2>CSS:</h2>
+          <pre>
+            <SyntaxHighlighter style={materialDark} language="javascript">
+              {innerCSS}
+            </SyntaxHighlighter>
+          </pre>
+        </div>
       </div>
     </div>
   );

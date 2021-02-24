@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .main {
   width: 100vw;
   height: 100vh;
@@ -33,7 +37,8 @@
 }
 
 .footer {
-  height: 60px;
+  padding-bottom: 30px;
+  font-size: 20px;
   width: 100%;
   display: flex;
   justify-content: center;

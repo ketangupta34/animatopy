@@ -68,6 +68,10 @@
   -webkit-animation: hue 60s infinite linear;
 }
 
+.cssCode {
+  margin: 20px 0;
+}
+
 @media (max-width: 700px) {
   .siteTitle {
     font-size: 4rem;
